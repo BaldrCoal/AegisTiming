@@ -10,10 +10,8 @@ import keyboard
 
 class TimerRecognizer:
     def __init__(self, path):
-        templates_path = os.listdir(path)
-        self.templates = list()
-        for i in range(len(templates_path)):
-            self.templates.append(cv2.imread(path + templates_path[i]))
+        self.threshold = 0.9
+        self.templates = np.load(os.path.join(path, 'templates.npy'))
 
     def process(self, img, template_size, index):
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -22,15 +20,11 @@ class TimerRecognizer:
 
         w, h = template.shape[::-1]
         res = cv2.matchTemplate(img_gray, template, cv2.TM_CCOEFF_NORMED)
-        threshold = 0.9
-        loc = np.where(res >= threshold)
-        counter = 0
+        loc = np.where(res >= self.threshold)
         positions = list()
         for pt in zip(*loc[::-1]):
             cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
-            counter += 1
             positions.append(pt[0])
-        # img = image_resize(img, height = 600)
         return positions
 
     def get_time(self, img):
