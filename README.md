@@ -1,5 +1,5 @@
 ﻿# AegisTiming
- [Скачать](https://github.com/BaldrCoal/AegisTiming/releases/tag/Dota)
+ [Скачать](https://github.com/BaldrCoal/AegisTiming/releases/tag/Dota2)
  
 Данный скрипт позволяет по нажатию кнопочки(по умолчанию "=") получить в буфер обмена следующие тайминги:
 1. Время пропажи аегиса.
