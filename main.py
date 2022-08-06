@@ -1,5 +1,5 @@
 import time
-
+import configparser
 import cv2
 import numpy as np
 import os
@@ -54,13 +54,15 @@ def give_timings():
     else:
         pyperclip.copy('пусто')
 
+config = configparser.ConfigParser()
+config.read('config.ini')
 
 while True:  # making a loop
     try:  # used try so that if user pressed other than the given key error will not be shown
-        if keyboard.is_pressed('='):  # if key 'q' is pressed
+        if keyboard.is_pressed(config['DEFAULT']['ActivateKey']):  # if key 'q' is pressed
             give_timings()
             pass  # finishing the loop
         else:
-            time.sleep(1)
+            time.sleep(0.1)
     except:
         break  # if user pressed a key other than the given key the loop will break
