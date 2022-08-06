@@ -12,4 +12,6 @@
 
 Для самостоятельной сборки пропишите в терминал:
 
+```
 pyinstaller --onefile --noconsole --icon icon.ico main.py
+```
