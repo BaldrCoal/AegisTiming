@@ -57,6 +57,7 @@ def give_timings():
 config = configparser.ConfigParser()
 config.read('config.ini')
 
+
 while True:  # making a loop
     try:  # used try so that if user pressed other than the given key error will not be shown
         if keyboard.is_pressed(config['DEFAULT']['ActivateKey']):  # if key 'q' is pressed
@@ -64,5 +65,6 @@ while True:  # making a loop
             pass  # finishing the loop
         else:
             time.sleep(0.1)
-    except:
+    except Exception as e:
+        print(e)
         break  # if user pressed a key other than the given key the loop will break
