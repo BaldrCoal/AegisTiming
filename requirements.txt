@@ -1,0 +1,5 @@
+opencv-python~=4.5.5.62
+numpy~=1.23.1
+PyAutoGUI~=0.9.53
+pyperclip~=1.8.2
+keyboard~=0.13.5
