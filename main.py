@@ -54,15 +54,20 @@ def give_timings():
     else:
         pyperclip.copy('пусто')
 
+
 config = configparser.ConfigParser()
 config.read('config.ini')
-
+activate_key = config['DEFAULT']['ActivateKey']
+shut_down_key_first = config['DEFAULT']['ShutDownKey'].split(':')[0]
+shut_down_key_second = config['DEFAULT']['ShutDownKey'].split(':')[1]
 
 while True:  # making a loop
     try:  # used try so that if user pressed other than the given key error will not be shown
-        if keyboard.is_pressed(config['DEFAULT']['ActivateKey']):  # if key 'q' is pressed
+        if keyboard.is_pressed(activate_key):  # if key 'q' is pressed
             give_timings()
             pass  # finishing the loop
+        if keyboard.is_pressed(shut_down_key_first) and keyboard.is_pressed(shut_down_key_second):
+            exit()
         else:
             time.sleep(0.1)
     except Exception as e:
