@@ -10,10 +10,7 @@ import keyboard
 
 class TimerRecognizer:
     def __init__(self, path):
-        templates_path = os.listdir(path)
-        self.templates = list()
-        for i in range(len(templates_path)):
-            self.templates.append(cv2.imread(path + templates_path[i]))
+        self.templates = np.load(os.path.join(path, 'templates.npy'))
 
     def process(self, img, template_size, index):
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
