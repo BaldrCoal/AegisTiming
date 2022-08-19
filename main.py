@@ -59,7 +59,9 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 activateKey = config['DEFAULT']['ActivateKey']
 shutDownKey = config['DEFAULT']['ShutDownKey']
-
+startDota = bool(config['DEFAULT']['StartDotaOnStartUp'])
+if startDota:
+    os.system('cmd /c start steam://rungameid/570')
 keyboard.add_hotkey(activateKey, give_timings)
 
 while True:
