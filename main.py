@@ -61,15 +61,15 @@ activate_key = config['DEFAULT']['ActivateKey']
 shut_down_key_first = config['DEFAULT']['ShutDownKey'].split(':')[0]
 shut_down_key_second = config['DEFAULT']['ShutDownKey'].split(':')[1]
 
-while True:  # making a loop
-    try:  # used try so that if user pressed other than the given key error will not be shown
-        if keyboard.is_pressed(activate_key):  # if key 'q' is pressed
+while True:
+    try:
+        if keyboard.is_pressed(activate_key):
             give_timings()
-            pass  # finishing the loop
+            pass
         if keyboard.is_pressed(shut_down_key_first) and keyboard.is_pressed(shut_down_key_second):
             exit()
         else:
             time.sleep(0.1)
     except Exception as e:
         print(e)
-        break  # if user pressed a key other than the given key the loop will break
+        break
