@@ -6,7 +6,7 @@ import os
 import pyautogui
 import pyperclip
 import keyboard
-
+import sys
 
 class TimerRecognizer:
     def __init__(self, path):
@@ -57,19 +57,11 @@ def give_timings():
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-activate_key = config['DEFAULT']['ActivateKey']
-shut_down_key_first = config['DEFAULT']['ShutDownKey'].split(':')[0]
-shut_down_key_second = config['DEFAULT']['ShutDownKey'].split(':')[1]
+activateKey = config['DEFAULT']['ActivateKey']
+shutDownKey = config['DEFAULT']['ShutDownKey']
+
+keyboard.add_hotkey(activateKey, give_timings)
 
 while True:
-    try:
-        if keyboard.is_pressed(activate_key):
-            give_timings()
-            pass
-        if keyboard.is_pressed(shut_down_key_first) and keyboard.is_pressed(shut_down_key_second):
-            exit()
-        else:
-            time.sleep(0.1)
-    except Exception as e:
-        print(e)
-        break
+    keyboard.wait(shutDownKey)
+    sys.exit()
